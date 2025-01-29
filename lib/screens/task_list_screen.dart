@@ -31,7 +31,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(size.height * 0.15),
         child: AppBar(
-          backgroundColor: Colors.indigo,
+          backgroundColor: Color(0xff3556AB),
           elevation: 0,
           flexibleSpace: Padding(
             padding: EdgeInsets.symmetric(
@@ -98,50 +98,58 @@ class _TaskListScreenState extends State<TaskListScreen> {
           Container(
             height: 116,
             color: const Color(0xff9EB031),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Row(
+            padding: const EdgeInsets.symmetric(horizontal: 24,),
+            child: Stack(
               children: [
-                SvgPicture.asset(
-                  'assets/trophy.svg',
-                  height: 40.89,
-                  width: 53.1,
-                ),
-                const SizedBox(width: 16),
-                const Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'Go Pro (No Ads)',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+                Row(
+                  children: [
+                    SvgPicture.asset(
+                      'assets/trophy.svg',
+                      height: 40.89,
+                      width: 53.1,
                     ),
-                    Text(
-                      'No fuss, no ads, for only \$1 a month',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black54,
-                      ),
+                    const SizedBox(width: 16),
+                    const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'Go Pro (No Ads)',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        Text(
+                          'No fuss, no ads, for only \$1 a\nmonth',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black54,
+                          ),
+                        ),
+                      ],
                     ),
+
                   ],
                 ),
-                const Spacer(),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 32, vertical: 50),
-                  decoration: BoxDecoration(
-                    color: const Color(0xff071D55),
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                  child: const Text(
-                    '\$1',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                Positioned(
+                  right: 0,
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 71,
+                    width: 66.11,
+                    decoration: BoxDecoration(
+                      color: const Color(0xff071D55),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    child: const Text(
+                      '\$1',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -151,6 +159,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
           const SizedBox(height: 16),
           Expanded(
             child: ListView.builder(
+              physics: AlwaysScrollableScrollPhysics(),
               itemCount: tasks.length,
               itemBuilder: (context, index) {
                 final task = tasks[index];
@@ -167,9 +176,8 @@ class _TaskListScreenState extends State<TaskListScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Row(
                         children: [
-                          SizedBox(
-                            height: 32,
-                            width: 32,
+                          Transform.scale(
+                            scale: 1.3,
                             child: Checkbox(
                               value: task['isDone'],
                               shape: const CircleBorder(),
@@ -202,9 +210,9 @@ class _TaskListScreenState extends State<TaskListScreen> {
                                     color: Colors.black), // Black border
                               ),
                               shape: MaterialStateProperty.all(
-                               const RoundedRectangleBorder(
+                                RoundedRectangleBorder(
                                   borderRadius:
-                                      BorderRadius.zero, // Square shape
+                                      BorderRadius.all(Radius.circular(4)), // Square shape
                                 ),
                               ),
                               foregroundColor: MaterialStateProperty.all(
