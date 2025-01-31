@@ -1,13 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do_app/models/task.dart';
+import 'package:to_do_app/provider/task_provider.dart';
 
 class EditTaskScreen extends StatefulWidget {
-  const EditTaskScreen({super.key});
+  final TaskModel taskModel;
+  final int taskIndex;
+  const EditTaskScreen(
+      {super.key, required this.taskModel, required this.taskIndex});
 
   @override
   State<EditTaskScreen> createState() => _EditTaskScreenState();
 }
 
 class _EditTaskScreenState extends State<EditTaskScreen> {
+  TextEditingController taskNameController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    taskNameController.text = widget.taskModel.title;
+  }
+
+  @override
+  void dispose() {
+    taskNameController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,11 +62,12 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
           ),
           Padding(
             padding:
-            const EdgeInsets.only(left: 17, right: 17, top: 14, bottom: 14),
+                const EdgeInsets.only(left: 17, right: 17, top: 14, bottom: 14),
             child: TextField(
+              controller: taskNameController,
               decoration: InputDecoration(
                 filled: true,
-                fillColor:const Color(0xffFDFDFD),
+                fillColor: const Color(0xffFDFDFD),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(9),
                   borderSide: const BorderSide(
@@ -62,17 +83,21 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
             child: Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // Add your action here
+                  context.read<TaskProvider>().editTask(
+                      taskIndex: widget.taskIndex,
+                      taskTitle: taskNameController.text);
+
+                  Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
                   elevation: 6,
                   shadowColor: Colors.black,
-                  backgroundColor:const Color(0xff3556AB), // Button background color
+                  backgroundColor:
+                      const Color(0xff3556AB), // Button background color
                   minimumSize: const Size(365, 61), // Set width and height
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
-                      side:const BorderSide(color: Color(0xff0D2972))
-                  ),
+                      side: const BorderSide(color: Color(0xff0D2972))),
                 ),
                 child: const Text(
                   'Done',

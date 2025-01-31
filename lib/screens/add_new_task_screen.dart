@@ -1,5 +1,8 @@
 // AddNewTaskScreen.dart
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do_app/models/task.dart';
+import 'package:to_do_app/provider/task_provider.dart';
 
 class AddNewTaskScreen extends StatefulWidget {
   const AddNewTaskScreen({super.key});
@@ -51,7 +54,7 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
           ),
           Padding(
             padding:
-            const EdgeInsets.only(left: 17, right: 17, top: 14, bottom: 14),
+                const EdgeInsets.only(left: 17, right: 17, top: 14, bottom: 14),
             child: TextField(
               controller: _taskController,
               decoration: InputDecoration(
@@ -72,6 +75,13 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
             child: Center(
               child: ElevatedButton(
                 onPressed: () {
+                  context.read<TaskProvider>().addTask(
+                        TaskModel(
+                          title: _taskController.text,
+                          isDone: false,
+                        ),
+                      );
+                  Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
                   elevation: 6,

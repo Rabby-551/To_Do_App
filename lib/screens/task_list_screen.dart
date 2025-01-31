@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do_app/models/task.dart';
+import 'package:to_do_app/provider/task_provider.dart';
 import 'package:to_do_app/screens/add_new_task_screen.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do_app/screens/edit_task_screen.dart';
 
 import '../widgets/go_pro_widget.dart';
 
-
-class TaskListScreen extends StatefulWidget {
-  const TaskListScreen({key});
-
-  @override
-  State<TaskListScreen> createState() => _TaskListScreenState();
-}
-
-class _TaskListScreenState extends State<TaskListScreen> {
-  //  task list
-  List<Map<String, dynamic>> tasks = [ ];
+class TaskListScreen extends StatelessWidget {
+  const TaskListScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +21,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(size.height * 0.15),
         child: AppBar(
-          backgroundColor:const Color(0xff3556AB),
+          backgroundColor: const Color(0xff3556AB),
           elevation: 0,
           flexibleSpace: Padding(
             padding: EdgeInsets.symmetric(
@@ -60,12 +54,12 @@ class _TaskListScreenState extends State<TaskListScreen> {
                   ),
                 ),
                 const SizedBox(width: 16),
-               const Expanded(
+                const Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       Text(
+                      Text(
                         'Hello,Raziul Islam Rabby',
                         style: TextStyle(
                           fontSize: 20,
@@ -73,10 +67,10 @@ class _TaskListScreenState extends State<TaskListScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                       SizedBox(height: 4),
+                      SizedBox(height: 4),
                       Text(
                         'rabby.raziul@gmail.com',
-                        style:  TextStyle(
+                        style: TextStyle(
                             color: Colors.white,
                             fontStyle: FontStyle.italic,
                             fontSize: 25,
@@ -96,107 +90,110 @@ class _TaskListScreenState extends State<TaskListScreen> {
           GoProWidget(),
           const SizedBox(height: 16),
           Expanded(
-            child: ListView.builder(
-              physics: AlwaysScrollableScrollPhysics(),
-              itemCount: tasks.length,
-              itemBuilder: (context, index) {
-                final task = tasks[index];
-                return Padding(
-                  padding:
-                      const EdgeInsets.only(left: 16, right: 16, bottom: 24),
-                  child: Card(
-                    color: Color(0xffFFFFFF),
-                    elevation: 3,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Container(
-                      width: 382,
-                      height: 91,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Row(
-                        children: [
-                          Transform.scale(
-                            scale: 1.3,
-                            child: Checkbox(
-                              value: task['isDone'],
-                              shape: const CircleBorder(),
-                              activeColor: Colors.green,
-                              onChanged: (value) {
-                                setState(() {
-                                  tasks[index]['isDone'] = value!;
-                                });
-                              },
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              task['title'],
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                decoration: task['isDone']
-                                    ? TextDecoration.lineThrough
-                                    : TextDecoration.none,
+            child: Consumer<TaskProvider>(builder: (context, data, child) {
+              return ListView.builder(
+                physics: const AlwaysScrollableScrollPhysics(),
+                itemCount: data.taskList.length,
+                itemBuilder: (context, index) {
+                  final task = data.taskList[index];
+                  return Padding(
+                    padding:
+                        const EdgeInsets.only(left: 16, right: 16, bottom: 24),
+                    child: Card(
+                      color: const Color(0xffFFFFFF),
+                      elevation: 3,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Container(
+                        width: 382,
+                        height: 91,
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Row(
+                          children: [
+                            Transform.scale(
+                              scale: 1.3,
+                              child: Checkbox(
+                                value: task.isDone,
+                                shape: const CircleBorder(),
+                                activeColor: Colors.green,
+                                onChanged: (value) {
+                                  data.toggleTaskStatus(index);
+                                },
                               ),
                             ),
-                          ),
-                          TextButton(
-                            style: ButtonStyle(
-                              side: MaterialStateProperty.all(
-                                const BorderSide(color: Colors.black),
-                              ),
-                              shape: MaterialStateProperty.all(
-                                const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(4)), // Square shape
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                task.title,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  decoration: task.isDone
+                                      ? TextDecoration.lineThrough
+                                      : TextDecoration.none,
                                 ),
                               ),
-                              foregroundColor: MaterialStateProperty.all(
-                                  Colors.black), // Text color
                             ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const EditTaskScreen()),
-                              );
-                            },
-                            child: const Text(
-                              'Edit',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
+                            TextButton(
+                              style: ButtonStyle(
+                                side: MaterialStateProperty.all(
+                                  const BorderSide(color: Colors.black),
+                                ),
+                                shape: MaterialStateProperty.all(
+                                  const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(4)), // Square shape
+                                  ),
+                                ),
+                                foregroundColor: MaterialStateProperty.all(
+                                    Colors.black), // Text color
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => EditTaskScreen(
+                                            taskModel: task,
+                                            taskIndex: index,
+                                          )),
+                                );
+                              },
+                              child: const Text(
+                                'Edit',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
-            ),
+                  );
+                },
+              );
+            }),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AddNewTaskScreen()),
+          );
         },
-        child: Icon(
+        backgroundColor: const Color(0xff123EB1),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+            side: const BorderSide(color: Color(0xff123EB1))),
+        child: const Icon(
           Icons.add,
           color: Colors.white,
-        ),
-        backgroundColor: Color(0xff123EB1),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-          side: BorderSide(color: Color(0xff123EB1))
         ),
       ),
     );
   }
 }
-
-
