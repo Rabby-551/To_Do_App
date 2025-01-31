@@ -6,11 +6,12 @@ void main (){
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({key});
 
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Task Manger',
       theme: ThemeData(
         primaryColor:Colors.blue,

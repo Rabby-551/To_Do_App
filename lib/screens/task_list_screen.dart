@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:to_do_app/screens/add_new_task_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:to_do_app/screens/edit_task_screen.dart';
+
+import '../widgets/go_pro_widget.dart';
+
 
 class TaskListScreen extends StatefulWidget {
-  const TaskListScreen({super.key});
+  const TaskListScreen({key});
 
   @override
   State<TaskListScreen> createState() => _TaskListScreenState();
@@ -14,12 +19,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
   List<Map<String, dynamic>> tasks = [
     {'title': 'Complete Flutter project', 'isDone': false},
     {'title': 'Write blog post', 'isDone': false},
-    {'title': 'Write blog post', 'isDone': false},
-    {'title': 'Write blog post', 'isDone': false},
-    {'title': 'Write blog post', 'isDone': false},
-    {'title': 'Write blog post', 'isDone': false},
-    {'title': 'Write blog post', 'isDone': false},
-    {'title': 'Write blog post', 'isDone': false},
+
   ];
 
   @override
@@ -31,7 +31,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(size.height * 0.15),
         child: AppBar(
-          backgroundColor: Color(0xff3556AB),
+          backgroundColor:const Color(0xff3556AB),
           elevation: 0,
           flexibleSpace: Padding(
             padding: EdgeInsets.symmetric(
@@ -56,7 +56,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                   ),
                   child: ClipOval(
                     child: Image.asset(
-                      'assets/img.png',
+                      'assets/Profile.png',
                       fit: BoxFit.cover,
                       width: 50,
                       height: 50,
@@ -64,26 +64,28 @@ class _TaskListScreenState extends State<TaskListScreen> {
                   ),
                 ),
                 const SizedBox(width: 16),
-                const Expanded(
+               const Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Hello, Raziul Islam Rabby',
+                       Text(
+                        'Hello,Raziul Islam Rabby',
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 4),
+                       SizedBox(height: 4),
                       Text(
-                        'rabby@gmail.com',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white70,
-                        ),
+                        'rabby.raziul@gmail.com',
+                        style:  TextStyle(
+                            color: Colors.white,
+                            fontStyle: FontStyle.italic,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w100,
+                            height: 0),
                       ),
                     ],
                   ),
@@ -95,67 +97,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
       ),
       body: Column(
         children: [
-          Container(
-            height: 116,
-            color: const Color(0xff9EB031),
-            padding: const EdgeInsets.symmetric(horizontal: 24,),
-            child: Stack(
-              children: [
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/trophy.svg',
-                      height: 40.89,
-                      width: 53.1,
-                    ),
-                    const SizedBox(width: 16),
-                    const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
-                          'Go Pro (No Ads)',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          'No fuss, no ads, for only \$1 a\nmonth',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black54,
-                          ),
-                        ),
-                      ],
-                    ),
-
-                  ],
-                ),
-                Positioned(
-                  right: 0,
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: 71,
-                    width: 66.11,
-                    decoration: BoxDecoration(
-                      color: const Color(0xff071D55),
-                      borderRadius: BorderRadius.circular(0),
-                    ),
-                    child: const Text(
-                      '\$1',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          GoProWidget(),
           const SizedBox(height: 16),
           Expanded(
             child: ListView.builder(
@@ -164,8 +106,10 @@ class _TaskListScreenState extends State<TaskListScreen> {
               itemBuilder: (context, index) {
                 final task = tasks[index];
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  padding:
+                      const EdgeInsets.only(left: 16, right: 16, bottom: 24),
                   child: Card(
+                    color: Color(0xffFFFFFF),
                     elevation: 3,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -189,7 +133,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
                               },
                             ),
                           ),
-
                           const SizedBox(width: 8),
                           Expanded(
                             child: Text(
@@ -206,19 +149,25 @@ class _TaskListScreenState extends State<TaskListScreen> {
                           TextButton(
                             style: ButtonStyle(
                               side: MaterialStateProperty.all(
-                                const BorderSide(
-                                    color: Colors.black), // Black border
+                                const BorderSide(color: Colors.black),
                               ),
                               shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(4)), // Square shape
+                                const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(4)), // Square shape
                                 ),
                               ),
                               foregroundColor: MaterialStateProperty.all(
                                   Colors.black), // Text color
                             ),
-                            onPressed: () { },
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const EditTaskScreen()),
+                              );
+                            },
                             child: const Text(
                               'Edit',
                               style: TextStyle(
@@ -238,11 +187,16 @@ class _TaskListScreenState extends State<TaskListScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async{
+          final result =await Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const AddNewTaskScreen()),
           );
+          if (result != null && result is String) {
+            setState(() {
+              tasks.add(result as Map<String, dynamic>); // Add the returned task to the list
+            });
+          }
         },
         child: Icon(
           Icons.add,
@@ -251,9 +205,11 @@ class _TaskListScreenState extends State<TaskListScreen> {
         backgroundColor: Color(0xff123EB1),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
+          side: BorderSide(color: Color(0xff123EB1))
         ),
       ),
-
     );
   }
 }
+
+
