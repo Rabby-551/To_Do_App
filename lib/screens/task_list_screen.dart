@@ -16,11 +16,7 @@ class TaskListScreen extends StatefulWidget {
 
 class _TaskListScreenState extends State<TaskListScreen> {
   //  task list
-  List<Map<String, dynamic>> tasks = [
-    {'title': 'Complete Flutter project', 'isDone': false},
-    {'title': 'Write blog post', 'isDone': false},
-
-  ];
+  List<Map<String, dynamic>> tasks = [ ];
 
   @override
   Widget build(BuildContext context) {
@@ -187,16 +183,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async{
-          final result =await Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const AddNewTaskScreen()),
-          );
-          if (result != null && result is String) {
-            setState(() {
-              tasks.add(result as Map<String, dynamic>); // Add the returned task to the list
-            });
-          }
+        onPressed: () {
         },
         child: Icon(
           Icons.add,
