@@ -28,17 +28,16 @@ class GoProWidget extends StatelessWidget {
               const SizedBox(width: 16),
               const Column(
                 mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     'Go Pro (No Ads)',
                     style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      height: 0,
-                    ),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        height: 1),
                   ),
                   Text(
                     'No fuss, no ads, for only \$1 a\nmonth',
@@ -49,6 +48,7 @@ class GoProWidget extends StatelessWidget {
           ),
           Positioned(
             right: 0,
+            top: 0,
             child: Container(
               alignment: Alignment.center,
               height: 71,
