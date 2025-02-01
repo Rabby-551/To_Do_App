@@ -24,6 +24,7 @@ class GoProWidget extends StatelessWidget {
                 'assets/trophy.svg',
                 height: 45,
                 width: 53.1,
+
               ),
               const SizedBox(width: 16),
               const Column(
@@ -34,13 +35,26 @@ class GoProWidget extends StatelessWidget {
                   Text(
                     'Go Pro (No Ads)',
                     style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        height: 1),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      height: 1,
+                      shadows: [
+                        Shadow(color: Color(0xffFFFFFF), offset: Offset(0, 1)),
+                      ],
+                    ),
                   ),
                   Text(
                     'No fuss, no ads, for only \$1 a\nmonth',
+                    style: TextStyle(
+                      fontSize: 12,
+                      shadows: [
+                        Shadow(
+                          color: Color(0xffFFFFFF),
+                          offset: Offset(0, 1),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

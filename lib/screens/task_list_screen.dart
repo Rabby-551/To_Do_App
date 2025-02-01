@@ -64,17 +64,30 @@ class TaskListScreen extends StatelessWidget {
                           fontSize: 20,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
+                          shadows: [
+                            Shadow(
+                              color: Color(0xff000000),
+                              offset: Offset(0, 2),
+                            )
+                          ],
                         ),
                       ),
                       SizedBox(height: 4),
                       Text(
                         'rabby.raziul@gmail.com',
                         style: TextStyle(
-                            color: Colors.white,
-                            fontStyle: FontStyle.italic,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w100,
-                            height: 0),
+                          color: Colors.white,
+                          fontStyle: FontStyle.italic,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w100,
+                          height: 0,
+                            shadows: [
+                              Shadow(
+                                color: Color(0xff000000),
+                                offset: Offset(0, 2),
+                              )
+                            ]
+                        ),
                       ),
                     ],
                   ),
@@ -86,7 +99,7 @@ class TaskListScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          GoProWidget(),
+         const GoProWidget(),
           const SizedBox(height: 16),
           Expanded(
             child: Consumer<TaskProvider>(builder: (context, data, child) {

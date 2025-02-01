@@ -93,8 +93,8 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   elevation: 6,
                   shadowColor: Colors.black,
                   backgroundColor:
-                      const Color(0xff3556AB), // Button background color
-                  minimumSize: const Size(365, 61), // Set width and height
+                      const Color(0xff3556AB),
+                  minimumSize: const Size(365, 61),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                       side: const BorderSide(color: Color(0xff0D2972))),
