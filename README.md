@@ -3,14 +3,15 @@
 A Task Management ToDo Application
 
 Screenshort 1:
-![Image 1](https://github.com/user-attachments/assets/c5709301-937d-4eaa-90b9-9677d345bcb9)
+![Screenshot 1](https://github.com/user-attachments/assets/fe5ccda9-0ab5-413c-9e5d-0318aff74a17)
+
 
 Screenshort 2:
+![Screenshot 2](https://github.com/user-attachments/assets/f6057559-0f9e-4f1b-8bfe-b56d6e30effb)
 
-![image 2](https://github.com/user-attachments/assets/8702ce3c-bccd-4224-a71f-286db6965a86)
 
 Screenshort 2:
-![image 3](https://github.com/user-attachments/assets/29318e08-a512-4968-9948-32719942aa35)
+![Screenshot_3](https://github.com/user-attachments/assets/2e611a2f-791e-4941-8e7a-c5bde481df7a)
 
 This project is a starting point for a Flutter application.
 
