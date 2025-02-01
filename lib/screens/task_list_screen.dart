@@ -35,13 +35,6 @@ class TaskListScreen extends StatelessWidget {
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 8,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
                   ),
                   child: ClipOval(
                     child: Image.asset(
@@ -76,18 +69,17 @@ class TaskListScreen extends StatelessWidget {
                       Text(
                         'rabby.raziul@gmail.com',
                         style: TextStyle(
-                          color: Colors.white,
-                          fontStyle: FontStyle.italic,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w100,
-                          height: 0,
+                            color: Colors.white,
+                            fontStyle: FontStyle.italic,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w100,
+                            height: 0,
                             shadows: [
                               Shadow(
                                 color: Color(0xff000000),
                                 offset: Offset(0, 2),
                               )
-                            ]
-                        ),
+                            ]),
                       ),
                     ],
                   ),
@@ -99,7 +91,7 @@ class TaskListScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-         const GoProWidget(),
+          const GoProWidget(),
           const SizedBox(height: 16),
           Expanded(
             child: Consumer<TaskProvider>(builder: (context, data, child) {
@@ -111,76 +103,83 @@ class TaskListScreen extends StatelessWidget {
                   return Padding(
                     padding:
                         const EdgeInsets.only(left: 16, right: 16, bottom: 24),
-                    child: Card(
-                      color: const Color(0xffFFFFFF),
-                      elevation: 3,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Container(
-                        width: 382,
-                        height: 91,
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Row(
-                          children: [
-                            Transform.scale(
-                              scale: 1.3,
-                              child: Checkbox(
-                                value: task.isDone,
-                                shape: const CircleBorder(),
-                                activeColor: Colors.green,
-                                onChanged: (value) {
-                                  data.toggleTaskStatus(index);
-                                },
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: Text(
-                                task.title,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  decoration: task.isDone
-                                      ? TextDecoration.lineThrough
-                                      : TextDecoration.none,
-                                ),
-                              ),
-                            ),
-                            TextButton(
-                              style: ButtonStyle(
-                                side: MaterialStateProperty.all(
-                                  const BorderSide(color: Colors.black),
-                                ),
-                                shape: MaterialStateProperty.all(
-                                  const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(4)), // Square shape
-                                  ),
-                                ),
-                                foregroundColor: MaterialStateProperty.all(
-                                    Colors.black), // Text color
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => EditTaskScreen(
-                                            taskModel: task,
-                                            taskIndex: index,
-                                          )),
-                                );
+                    child: Container(
+                      width: 382,
+                      height: 91,
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(6),
+                          border: Border.all(
+                            color: const Color(0xffE7E7E7),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              offset: const Offset(0, 4),
+                              blurRadius: 4,
+                            )
+                          ]),
+                      child: Row(
+                        children: [
+                          Transform.scale(
+                            scale: 1.3,
+                            child: Checkbox(
+                              value: task.isDone,
+                              shape: const CircleBorder(),
+                              activeColor: Colors.green,
+                              onChanged: (value) {
+                                data.toggleTaskStatus(index);
                               },
-                              child: const Text(
-                                'Edit',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              task.title,
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: const Color(0xff8D8D8D),
+                                fontWeight: FontWeight.w500,
+                                decoration: task.isDone
+                                    ? TextDecoration.lineThrough
+                                    : TextDecoration.none,
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                          TextButton(
+                            style: ButtonStyle(
+                              side: MaterialStateProperty.all(
+                                const BorderSide(color: Colors.black),
+                              ),
+                              shape: MaterialStateProperty.all(
+                                const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(4)), // Square shape
+                                ),
+                              ),
+                              foregroundColor: MaterialStateProperty.all(
+                                  Colors.black), // Text color
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EditTaskScreen(
+                                          taskModel: task,
+                                          taskIndex: index,
+                                        )),
+                              );
+                            },
+                            child: const Text(
+                              'Edit',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   );

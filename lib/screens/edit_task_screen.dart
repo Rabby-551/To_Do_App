@@ -65,6 +65,9 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 const EdgeInsets.only(left: 17, right: 17, top: 14, bottom: 14),
             child: TextField(
               controller: taskNameController,
+              style: const TextStyle(
+                fontSize: 20,
+              ),
               decoration: InputDecoration(
                 filled: true,
                 fillColor: const Color(0xffFDFDFD),
@@ -92,8 +95,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 style: ElevatedButton.styleFrom(
                   elevation: 6,
                   shadowColor: Colors.black,
-                  backgroundColor:
-                      const Color(0xff3556AB),
+                  backgroundColor: const Color(0xff3556AB),
                   minimumSize: const Size(365, 61),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),

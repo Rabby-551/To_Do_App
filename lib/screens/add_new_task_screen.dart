@@ -57,6 +57,9 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
                 const EdgeInsets.only(left: 17, right: 17, top: 14, bottom: 14),
             child: TextField(
               controller: _taskController,
+              style: const TextStyle(
+                fontSize: 20,
+              ),
               decoration: InputDecoration(
                 filled: true,
                 fillColor: const Color(0xffFDFDFD),
