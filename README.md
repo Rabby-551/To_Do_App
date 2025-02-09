@@ -3,7 +3,7 @@
 A Task Management ToDo Application
 
 Screenshort 1:
-![Screenshot_3](https://github.com/user-attachments/assets/1ddce083-d663-4275-8852-4c3c2b971617)
+![Screenshot_20250209-164021](https://github.com/user-attachments/assets/dbefb85c-a471-40a4-981a-fe7ab66c8f9d)
 
 
 Screenshort 2:
