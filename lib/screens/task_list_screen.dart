@@ -52,7 +52,7 @@ class TaskListScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Hello,Raziul Islam Rabby',
+                        'Hello, Raziul Islam Rabby',
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
@@ -102,7 +102,7 @@ class TaskListScreen extends StatelessWidget {
                   final task = data.taskList[index];
                   return Padding(
                     padding:
-                        const EdgeInsets.only(left: 16, right: 16, bottom: 24),
+                    const EdgeInsets.only(left: 16, right: 16, bottom: 24),
                     child: Container(
                       width: 382,
                       height: 91,
@@ -166,9 +166,9 @@ class TaskListScreen extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => EditTaskScreen(
-                                          taskModel: task,
-                                          taskIndex: index,
-                                        )),
+                                      taskModel: task,
+                                      taskIndex: index,
+                                    )),
                               );
                             },
                             child: const Text(
@@ -189,28 +189,48 @@ class TaskListScreen extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const AddNewTaskScreen()),
-          );
-        },
-        backgroundColor: const Color(
-          0xff3556AB,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(70),
-          side: const BorderSide(
-            color: Color(0xff123EB1),
+      floatingActionButton: Stack(
+        alignment: Alignment.bottomRight,
+        children: [
+          Container(
+            width: 70,
+            height: 70,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.white.withOpacity(0.8),
+                  blurRadius: 8,
+                  spreadRadius: 1,
+                  offset: const Offset(0, 5),
+                ),
+              ],
+            ),
           ),
-        ),
-        child: const Icon(
-          Icons.add,
-          weight: 36,
-          color: Colors.white,
-          shadows: [Shadow(color: Color(0xff000000), offset: Offset(0, 2))],
-        ),
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AddNewTaskScreen(),
+                ),
+              );
+            },
+            backgroundColor: const Color(0xff3556AB),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(70),
+              side: const BorderSide(
+                color: Color(0xff123EB1),
+              ),
+            ),
+            child: const Icon(
+              Icons.add,
+              size: 36,
+              color: Colors.white,
+              shadows: [Shadow(color: Colors.black,offset: Offset(0, 2))],
+            ),
+          ),
+        ],
       ),
     );
   }
